@@ -5,7 +5,7 @@ import play.PlayImport._
 object ApplicationBuild extends Build {
 
   val appName         = "play-solrj"
-  val appVersion      = "0.5-SNAPSHOT"
+  val appVersion      = "0.6-SNAPSHOT"
 
   val main = Project(appName, file(".")).enablePlugins(play.PlayScala).settings(
     version := appVersion,

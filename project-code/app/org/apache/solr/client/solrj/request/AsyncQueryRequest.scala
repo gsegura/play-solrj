@@ -17,6 +17,7 @@ package org.apache.solr.client.solrj.request
 * limitations under the License.
 */
 
+
 import play.api.libs.concurrent.Execution.Implicits._
 
 import scala.concurrent.{Future}
@@ -26,6 +27,7 @@ import org.apache.solr.common.SolrException
 import org.apache.solr.client.solrj.{AsyncSolrServer, SolrServerException}
 import org.apache.solr.client.solrj.response.QueryResponse
 import org.apache.solr.client.solrj.SolrRequest.METHOD
+
 
 class AsyncQueryRequest(params: SolrParams, method: METHOD) extends QueryRequest(params, method) with AsyncRequest {
 
@@ -43,8 +45,9 @@ class AsyncQueryRequest(params: SolrParams, method: METHOD) extends QueryRequest
     }.recoverWith {
       case e: SolrServerException => Future.failed(e)
       case e: SolrException => Future.failed(e)
-      case e: Exception => Future.failed(new SolrServerException("Error executing query", e))
+      case e: Exception => Future.failed(new SolrServerException(s"Error executing query [${this.getParams}}]", e))
     }
 
   }
+
 }
