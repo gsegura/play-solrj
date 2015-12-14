@@ -26,7 +26,7 @@ import org.apache.solr.common.params.CommonParams
 import org.apache.solr.client.solrj.request.{AsyncQueryRequest, AsyncUpdateRequest}
 
 import com.carrotsearch.randomizedtesting.ThreadFilter
-import com.carrotsearch.randomizedtesting.annotations.ThreadLeakFilters
+import com.carrotsearch.randomizedtesting.annotations.{ThreadLeakScope, ThreadLeakFilters}
 
 /**
  * @todo implement response compression and compression test
@@ -123,6 +123,7 @@ class KnownPlayThread extends ThreadFilter {
 }
 
 @ThreadLeakFilters(filters = Array(classOf[KnownPlayThread]))
+@ThreadLeakScope(ThreadLeakScope.Scope.NONE)
 class BasicAsyncHttpSolrServerTest extends SolrJettyTestBase {
 
   private val jetty:JettySolrRunner = SolrJettyTestBase.jetty
